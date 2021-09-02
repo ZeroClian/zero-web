@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: zero-blog
+
+server:
+  port: 9002
+  servlet:
+    context-path: /blog
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9000/eureka/
