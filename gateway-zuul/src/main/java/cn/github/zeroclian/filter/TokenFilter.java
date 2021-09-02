@@ -18,7 +18,7 @@ public class TokenFilter extends AbstractZuulFilter {
     protected Object cRun() {
         HttpServletRequest request = context.getRequest();
         log.debug("{} request {}", request.getMethod(), request.getRequestURL().toString());
-        Object token = request.getParameter("token");
+        String token = request.getHeader("token");
         if (Objects.isNull(token)) {
             log.error("error: token is empty!");
             return fail(401, "无效的token!");

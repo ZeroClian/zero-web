@@ -11,10 +11,16 @@ eureka:
       defaultZone: http://localhost:9000/eureka/
 
 zuul:
-  prefix: zero
   host:
     connect-timeout-millis: 15000
     socket-timeout-millis: 60000
+  routes:
+    # 博客服务
+    blog:
+      path: /blog/**
+      serviceId: zero-blog
+      strip-prefix: false
+
 
 ribbon:
   ConnectTimeout: 15000
