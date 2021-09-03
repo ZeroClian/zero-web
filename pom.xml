@@ -12,6 +12,8 @@
         <module>eureka</module>
         <module>gateway-zuul</module>
         <module>blog</module>
+        <module>code-generator</module>
+        <module>common</module>
     </modules>
 
     <properties>
