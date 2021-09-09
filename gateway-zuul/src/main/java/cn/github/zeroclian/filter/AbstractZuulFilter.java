@@ -56,7 +56,7 @@ public abstract class AbstractZuulFilter extends ZuulFilter {
         context.setSendZuulResponse(false);
         context.getResponse().setContentType("text/html;charset=UTF-8");
         context.setResponseStatusCode(code);
-        context.setResponseBody(String.format("{\"result\": \"%s!\"}", msg));
+        context.setResponseBody(String.format("{\"error\": \"%s!\"}", msg));
         return null;
     }
 
