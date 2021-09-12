@@ -12,6 +12,8 @@
         <module>blog</module>
         <module>code-generator</module>
         <module>common</module>
+        <module>nacos</module>
+        <module>financial</module>
     </modules>
 
     <properties>
