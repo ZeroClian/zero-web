@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+  application:
+    name: example
+  datasource:
+    # 数据源
+    url: jdbc:mysql://127.0.0.1:3306/zero-web?useUnicode=true&characterEncoding=UTF-8&useInformationSchema=true&enabledTLSProtocols=TLSv1.2&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.jdbc.Driver
