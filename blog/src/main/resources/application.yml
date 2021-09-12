@@ -1,4 +1,8 @@
 spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
   application:
     name: zero-blog
   jpa:
@@ -33,7 +37,3 @@ server:
   servlet:
     context-path: /blog
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:9000/eureka/
