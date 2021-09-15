@@ -22,3 +22,9 @@ spring:
             - Path=/zero-blog/**
           filters:
             - StripPrefix=1
+        - id: zero-financial
+          uri: lb://zero-financial
+          predicates:
+            - Path=/financial/**
+          filters:
+            - StripPrefix=1
