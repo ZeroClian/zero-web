@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * @Desciption
+ * @Desciption 财务服务
  * @Author: qiyiguo
  * @Date: 2021-09-12 11:31 上午
  */
