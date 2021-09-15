@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: gateway
+    name: zero-gateway
   datasource:
     # 数据源
     url: jdbc:mysql://127.0.0.1:3306/zero-web?useUnicode=true&characterEncoding=UTF-8&useInformationSchema=true&enabledTLSProtocols=TLSv1.2&useSSL=false&serverTimezone=Asia/Shanghai
