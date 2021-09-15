@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 /**
  * ${table.remarks?replace(';', '', 'r')?trim}Get接口VO
- * @author by code generator
+ * @author ${author}
  * @version ${version}
  */
 @Data

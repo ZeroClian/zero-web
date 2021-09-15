@@ -19,18 +19,18 @@ public class ZeroGenerator {
         GeneratorProperties.setProperty("templatePath", "template");
         GeneratorFacade generatorFacade = initConfig();
 
-        GeneratorProperties.setProperty("jdbc_url", "jdbc:mysql://127.0.0.1:3306/zero-web?useUnicode=true&characterEncoding=UTF-8&useInformationSchema=true");
+        GeneratorProperties.setProperty("jdbc_url", "jdbc:mysql://127.0.0.1:3306/zero-web?useUnicode=true&characterEncoding=UTF-8&useInformationSchema=true&enabledTLSProtocols=TLSv1.2&useSSL=false&serverTimezone=Asia/Shanghai");
         GeneratorProperties.setProperty("jdbc_username", "root");
         GeneratorProperties.setProperty("jdbc_password", "root");
 
         // TODO 设置包名
-        GeneratorProperties.setProperty("basepackage", "cn.github.zeroclian.blog");
+        GeneratorProperties.setProperty("basepackage", "cn.github.zeroclian.financial");
 
         // TODO 设置表前缀
-        GeneratorProperties.setProperty("tableRemovePrefixes", "");
+        GeneratorProperties.setProperty("tableRemovePrefixes", "f_");
 
         //TODO 填入要生成代码的表名称，多个表以 ',' 分开
-        String tables = "blog";
+        String tables = "f_category";
 
         for (String table : tables.split(",")) {
             generatorFacade.generateByTable(table.trim());

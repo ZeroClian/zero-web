@@ -22,7 +22,7 @@ import java.util.List;
 
 /**
  * ${table.remarks?replace(';', '', 'r')?trim}服务层实现
- * @author by code generator
+ * @author ${author}
  * @version ${version}
  */
 @Slf4j

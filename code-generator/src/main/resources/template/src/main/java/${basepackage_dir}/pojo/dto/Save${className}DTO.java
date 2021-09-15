@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 /**
  * ${table.remarks?replace(';', '', 'r')?trim}参数类
- * @author by code generator
+ * @author ${author}
  * @version ${version}
  */
 @Data

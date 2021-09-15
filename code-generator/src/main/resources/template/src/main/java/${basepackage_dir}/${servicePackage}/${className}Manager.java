@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  * ${table.remarks?replace(';', '', 'r')?trim}服务层接口
- * @author by code generator
+ * @author ${author}
  * @version ${version}
  */
 @Validated

@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * ${table.remarks?replace(';', '', 'r')?trim}接口
- * @author by code generator
+ * @author ${author}
  * @version ${version}
  */
 @RestController

@@ -7,17 +7,12 @@
 <#macro jspEl value>${r"${"}${value}}</#macro>
 
 <#macro generateField column>
-<#if column.columnNameLower=='id' || column.columnNameLower=='name'>
-    private ${column.simpleJavaType} ${classNameFirstLower}${column.columnNameLower?cap_first};
-</#if>
-<#if column.columnNameLower!='id' && column.columnNameLower!='name'>
     private ${column.simpleJavaType} ${column.columnNameLower?replace('^is', '', 'r')?uncap_first};
-</#if>
 </#macro>
 
 <#macro generateVoFields table>
 <#list table.columns as column>
-<#if column.columnNameLower!='createTime' && column.columnNameLower!='updateTime' && column.columnNameLower!='organizationId'>
+<#if column.columnNameLower!='createTime' && column.columnNameLower!='updateTime' && column.columnNameLower!='organizationId' && column.columnNameLower!='tenantId'>
     /**
      * ${column.columnAlias}
      */
@@ -32,10 +27,6 @@
 </#if></#macro>
 
 <#macro generateValidField column>
-<#if column.columnNameLower=='id' || column.columnNameLower=='name'><@generateValid column/>
-    private ${column.simpleJavaType} ${classNameFirstLower}${column.columnNameLower?cap_first};
-</#if>
-<#if column.columnNameLower!='id' && column.columnNameLower!='name'><@generateValid column/>
+    <@generateValid column/>
     private ${column.simpleJavaType} ${column.columnNameLower?replace('^is', '', 'r')?uncap_first};
-</#if>
 </#macro>

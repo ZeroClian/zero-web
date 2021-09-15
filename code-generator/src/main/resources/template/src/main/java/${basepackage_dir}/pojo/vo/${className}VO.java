@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 /**
  * ${table.remarks?replace(';', '', 'r')?trim}基本VO, 用于回显
- * @author by code generator
+ * @author ${author}
  * @version ${version}
  */
 @Data
