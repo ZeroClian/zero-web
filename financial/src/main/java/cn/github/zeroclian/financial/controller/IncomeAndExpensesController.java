@@ -1,15 +1,12 @@
 package cn.github.zeroclian.financial.controller;
 
-import cn.github.zeroclian.financial.pojo.vo.DayIncomeAndExpenses;
+import cn.github.zeroclian.financial.management.IncomeAndExpensesManager;
+import cn.github.zeroclian.financial.pojo.dto.ListIncomeAndExpensesDTO;
+import cn.github.zeroclian.financial.pojo.dto.SaveIncomeAndExpensesDTO;
+import cn.github.zeroclian.financial.pojo.dto.UpdateIncomeAndExpensesDTO;
+import cn.github.zeroclian.financial.pojo.vo.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
-import cn.github.zeroclian.financial.management.IncomeAndExpensesManager;
-import cn.github.zeroclian.financial.pojo.dto.SaveIncomeAndExpensesDTO;
-import cn.github.zeroclian.financial.pojo.dto.ListIncomeAndExpensesDTO;
-import cn.github.zeroclian.financial.pojo.vo.IncomeAndExpensesVO;
-import cn.github.zeroclian.financial.pojo.dto.UpdateIncomeAndExpensesDTO;
-import cn.github.zeroclian.financial.pojo.vo.ListIncomeAndExpensesVO;
-import cn.github.zeroclian.financial.pojo.vo.GetIncomeAndExpensesVO;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -90,5 +87,22 @@ public class IncomeAndExpensesController {
         return incomeAndExpensesManager.findIncomeAndExpensesByDate(date);
     }
 
+    /**
+     * 本周收支
+     *
+     * @param date 查询日期
+     */
+    @GetMapping("/week")
+    public WeekIncomeAndExpensesVO findWeekIncomeAndExpenses(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        return incomeAndExpensesManager.findWeekIncomeAndExpenses(date);
+    }
+
+    /**
+     * 本月收支
+     */
+    @GetMapping("/momth")
+    public MonthIncomeAndExpensesVO findMonthIncomeAndExpenses(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        return incomeAndExpensesManager.findMonthIncomeAndExpenses(date);
+    }
 
 }

@@ -1,26 +1,25 @@
 package cn.github.zeroclian.financial.management.impl;
 
 import cn.github.zeroclian.enumeration.CommonResultStatus;
+import cn.github.zeroclian.financial.management.CategoryManager;
+import cn.github.zeroclian.financial.pojo.dto.ListCategoryDTO;
+import cn.github.zeroclian.financial.pojo.dto.SaveCategoryDTO;
+import cn.github.zeroclian.financial.pojo.dto.UpdateCategoryDTO;
+import cn.github.zeroclian.financial.pojo.entity.Category;
+import cn.github.zeroclian.financial.pojo.vo.CategoryVO;
+import cn.github.zeroclian.financial.pojo.vo.GetCategoryVO;
+import cn.github.zeroclian.financial.pojo.vo.ListCategoryVO;
+import cn.github.zeroclian.financial.repository.CategoryRepository;
 import cn.github.zeroclian.pojo.vo.GlobalException;
 import cn.github.zeroclian.util.ReflectUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import cn.github.zeroclian.financial.pojo.entity.Category;
-import cn.github.zeroclian.financial.management.CategoryManager;
-import cn.github.zeroclian.financial.repository.CategoryRepository;
-import cn.github.zeroclian.financial.pojo.dto.SaveCategoryDTO;
-import cn.github.zeroclian.financial.pojo.dto.UpdateCategoryDTO;
-import cn.github.zeroclian.financial.pojo.dto.ListCategoryDTO;
-import cn.github.zeroclian.financial.pojo.vo.ListCategoryVO;
-import cn.github.zeroclian.financial.pojo.vo.CategoryVO;
-import cn.github.zeroclian.financial.pojo.vo.GetCategoryVO;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -45,7 +44,7 @@ public class JpaCategoryManager implements CategoryManager {
     @Override
     public List<ListCategoryVO> listCategory(ListCategoryDTO categoryDto) {
         List<Category> all = categoryRepository.findAll();
-        return all.stream().sorted(Comparator.comparing(Category::getId).reversed())
+        return all.stream().sorted(Comparator.comparing(Category::getLevel).thenComparing(Category::getId))
                 .map(a -> ReflectUtils.convert(a, ListCategoryVO.class)).collect(Collectors.toList());
     }
 

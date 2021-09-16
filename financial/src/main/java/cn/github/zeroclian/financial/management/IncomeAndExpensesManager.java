@@ -1,21 +1,15 @@
 package cn.github.zeroclian.financial.management;
 
-import javax.validation.Valid;
-
-import cn.github.zeroclian.financial.pojo.vo.DayIncomeAndExpenses;
+import cn.github.zeroclian.financial.pojo.dto.ListIncomeAndExpensesDTO;
+import cn.github.zeroclian.financial.pojo.dto.SaveIncomeAndExpensesDTO;
+import cn.github.zeroclian.financial.pojo.dto.UpdateIncomeAndExpensesDTO;
+import cn.github.zeroclian.financial.pojo.entity.IncomeAndExpenses;
+import cn.github.zeroclian.financial.pojo.vo.*;
+import cn.github.zeroclian.jpa.CrudManager;
 import org.springframework.validation.annotation.Validated;
 
-import javax.validation.constraints.*;
-
-import cn.github.zeroclian.financial.pojo.entity.IncomeAndExpenses;
-import cn.github.zeroclian.financial.pojo.dto.SaveIncomeAndExpensesDTO;
-import cn.github.zeroclian.financial.pojo.dto.ListIncomeAndExpensesDTO;
-import cn.github.zeroclian.financial.pojo.vo.IncomeAndExpensesVO;
-import cn.github.zeroclian.financial.pojo.dto.UpdateIncomeAndExpensesDTO;
-import cn.github.zeroclian.financial.pojo.vo.ListIncomeAndExpensesVO;
-import cn.github.zeroclian.financial.pojo.vo.GetIncomeAndExpensesVO;
-import cn.github.zeroclian.jpa.CrudManager;
-
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -69,4 +63,8 @@ public interface IncomeAndExpensesManager extends CrudManager<IncomeAndExpenses,
      * @param date 日期
      */
     DayIncomeAndExpenses findIncomeAndExpensesByDate(@NotNull(message = "日期不能为空") LocalDate date);
+
+    WeekIncomeAndExpensesVO findWeekIncomeAndExpenses(@NotNull(message = "日期不能为空") LocalDate date);
+
+    MonthIncomeAndExpensesVO findMonthIncomeAndExpenses(@NotNull(message = "日期不能为空") LocalDate date);
 }

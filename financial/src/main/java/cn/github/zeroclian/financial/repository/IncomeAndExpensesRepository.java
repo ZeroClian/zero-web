@@ -15,4 +15,6 @@ import java.util.List;
 public interface IncomeAndExpensesRepository extends JpaRepository<IncomeAndExpenses, Integer> {
 
     List<IncomeAndExpenses> findAllByDate(LocalDate date);
+
+    List<IncomeAndExpenses> findByDateBetween(LocalDate startDate, LocalDate endDate);
 }

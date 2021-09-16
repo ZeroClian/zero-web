@@ -1,11 +1,11 @@
 package cn.github.zeroclian.financial.pojo.vo;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.Date;
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  * 收支记录Get接口VO
@@ -47,5 +47,5 @@ public class GetIncomeAndExpensesVO {
     /**
      * 日期，DATE
      */
-    private Date date;
+    private LocalDate date;
 }
