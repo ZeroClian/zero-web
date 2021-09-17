@@ -61,7 +61,7 @@ public class JpaIncomeAndExpensesManager implements IncomeAndExpensesManager {
             throw new GlobalException(CommonResultStatus.Data_IS_NOT_EXPECTED, "分类ID不能为null");
         }
         IncomeAndExpenses incomeAndExpenses = ReflectUtils.convert(saveIncomeAndExpensesDto, IncomeAndExpenses.class);
-        if (incomeAndExpenses.getName() == null) {
+        if (incomeAndExpenses.getName() == null || "".equals(incomeAndExpenses.getName())) {
             incomeAndExpenses.setName(getCategoryName(incomeAndExpenses.getCategoryId()));
         }
         IncomeAndExpenses save = incomeAndExpensesRepository.save(incomeAndExpenses);
@@ -72,7 +72,13 @@ public class JpaIncomeAndExpensesManager implements IncomeAndExpensesManager {
     @Transactional(rollbackFor = Exception.class)
     public IncomeAndExpensesVO updateIncomeAndExpenses(UpdateIncomeAndExpensesDTO updateIncomeAndExpensesDto, Integer incomeAndExpensesId) {
         IncomeAndExpenses incomeAndExpenses = incomeAndExpensesRepository.findById(incomeAndExpensesId).orElseThrow(() -> new GlobalException(CommonResultStatus.NO_RECORDS_FOUND));
+        if (updateIncomeAndExpensesDto.getCategoryId() == null) {
+            throw new GlobalException(CommonResultStatus.Data_IS_NOT_EXPECTED, "分类ID不能为null");
+        }
         IncomeAndExpenses save = ReflectUtils.convert(updateIncomeAndExpensesDto, IncomeAndExpenses.class);
+        if (save.getName() == null || "".equals(save.getName())) {
+            save.setName(getCategoryName(updateIncomeAndExpensesDto.getCategoryId()));
+        }
         save.setId(incomeAndExpenses.getId());
         IncomeAndExpenses result = incomeAndExpensesRepository.save(save);
         return ReflectUtils.convert(result, IncomeAndExpensesVO.class);
