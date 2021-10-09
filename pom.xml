@@ -15,6 +15,7 @@
         <module>nacos</module>
         <module>financial</module>
         <module>gateway</module>
+        <module>api</module>
     </modules>
 
     <properties>
