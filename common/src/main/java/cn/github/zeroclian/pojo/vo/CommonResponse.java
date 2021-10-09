@@ -1,5 +1,6 @@
 package cn.github.zeroclian.pojo.vo;
 
+import cn.github.zeroclian.enumeration.CommonResultStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,5 +25,11 @@ public class CommonResponse<T> implements Serializable {
 
         this.code = code;
         this.message = message;
+    }
+
+    public CommonResponse(T data) {
+        this.data = data;
+        this.code = CommonResultStatus.SUCCESS.getCode();
+        this.message = CommonResultStatus.SUCCESS.getReason();
     }
 }
