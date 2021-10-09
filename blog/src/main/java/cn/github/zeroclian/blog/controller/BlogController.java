@@ -1,14 +1,17 @@
 package cn.github.zeroclian.blog.controller;
 
-import org.springframework.web.bind.annotation.*;
 import cn.github.zeroclian.blog.management.BlogManager;
-import cn.github.zeroclian.blog.pojo.dto.SaveBlogDTO;
 import cn.github.zeroclian.blog.pojo.dto.ListBlogDTO;
-import cn.github.zeroclian.blog.pojo.vo.BlogVO;
+import cn.github.zeroclian.blog.pojo.dto.SaveBlogDTO;
 import cn.github.zeroclian.blog.pojo.dto.UpdateBlogDTO;
-import cn.github.zeroclian.blog.pojo.vo.ListBlogVO;
+import cn.github.zeroclian.blog.pojo.vo.BlogVO;
 import cn.github.zeroclian.blog.pojo.vo.GetBlogVO;
+import cn.github.zeroclian.blog.pojo.vo.ListBlogVO;
+import cn.github.zeroclian.pojo.ExpensesVO;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -81,4 +84,11 @@ public class BlogController {
         blogManager.deleteByBlogId(blogId);
     }
 
+    /**
+     * 获取月支出
+     */
+    @GetMapping("/expenses")
+    public ExpensesVO getExpenses(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        return blogManager.getExpenses(date);
+    }
 }

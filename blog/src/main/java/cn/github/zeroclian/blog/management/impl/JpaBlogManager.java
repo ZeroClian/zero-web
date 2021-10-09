@@ -1,24 +1,26 @@
 package cn.github.zeroclian.blog.management.impl;
 
+import cn.github.zeroclian.blog.management.BlogManager;
+import cn.github.zeroclian.blog.pojo.dto.ListBlogDTO;
+import cn.github.zeroclian.blog.pojo.dto.SaveBlogDTO;
+import cn.github.zeroclian.blog.pojo.dto.UpdateBlogDTO;
 import cn.github.zeroclian.blog.pojo.entity.Blog;
+import cn.github.zeroclian.blog.pojo.vo.BlogVO;
+import cn.github.zeroclian.blog.pojo.vo.GetBlogVO;
+import cn.github.zeroclian.blog.pojo.vo.ListBlogVO;
+import cn.github.zeroclian.blog.repository.BlogRepository;
 import cn.github.zeroclian.enumeration.CommonResultStatus;
+import cn.github.zeroclian.pojo.ExpensesVO;
 import cn.github.zeroclian.pojo.vo.GlobalException;
+import cn.github.zeroclian.service.FinancialService;
 import cn.github.zeroclian.util.ReflectUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
-import cn.github.zeroclian.blog.management.BlogManager;
-import cn.github.zeroclian.blog.repository.BlogRepository;
-import cn.github.zeroclian.blog.pojo.dto.SaveBlogDTO;
-import cn.github.zeroclian.blog.pojo.dto.UpdateBlogDTO;
-import cn.github.zeroclian.blog.pojo.dto.ListBlogDTO;
-import cn.github.zeroclian.blog.pojo.vo.ListBlogVO;
-import cn.github.zeroclian.blog.pojo.vo.BlogVO;
-import cn.github.zeroclian.blog.pojo.vo.GetBlogVO;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,6 +37,7 @@ public class JpaBlogManager implements BlogManager {
 
 
     private final BlogRepository blogRepository;
+    private final FinancialService financialService;
 
     @Override
     public CrudRepository<Blog, Integer> getRepository() {
@@ -76,6 +79,13 @@ public class JpaBlogManager implements BlogManager {
     @Transactional(rollbackFor = Exception.class)
     public void deleteByBlogId(Integer blogId) {
         blogRepository.deleteById(blogId);
+    }
+
+    @Override
+    public ExpensesVO getExpenses(LocalDate date) {
+        ExpensesVO expensesVO = financialService.getExpensesMonth(date);
+        log.debug("支出：{}", expensesVO.getExpenses());
+        return expensesVO;
     }
 
 }

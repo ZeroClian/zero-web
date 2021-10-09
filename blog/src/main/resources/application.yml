@@ -30,8 +30,31 @@ spring:
       max-lifetime: 45000
       auto-commit: true
       pool-name: CouponHikariCP
+  redis:
+    host: 127.0.0.1
+    port: 6379
 
+### SpringCloud feign 默认开启支持ribbon负载均衡
+ribbon:
+  OkToRetryOnAllOperations: false #对所有操作请求都进行重试,默认false,包括连接超时(connectTimeout)和请求超时(readTimeOut)
+  ReadTimeout: 3000   #负载均衡超时时间，默认值5000
+  ConnectTimeout: 3000 #ribbon请求连接的超时时间，默认值2000
+  MaxAutoRetries: 0     #对当前实例的重试次数，默认0,不包含首次调用
+  MaxAutoRetriesNextServer: 0 #对切换实例的重试次数，默认1,不包含首次调用
 
 server:
   port: 9002
+
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            #feign整合hystrix 光设置Hystrix超时没用的 要配合ribbon超时
+            timeoutInMilliseconds: 5000
 

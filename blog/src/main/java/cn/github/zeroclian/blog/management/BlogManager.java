@@ -1,20 +1,19 @@
 package cn.github.zeroclian.blog.management;
 
-import javax.validation.Valid;
-
+import cn.github.zeroclian.blog.pojo.dto.ListBlogDTO;
+import cn.github.zeroclian.blog.pojo.dto.SaveBlogDTO;
+import cn.github.zeroclian.blog.pojo.dto.UpdateBlogDTO;
+import cn.github.zeroclian.blog.pojo.entity.Blog;
+import cn.github.zeroclian.blog.pojo.vo.BlogVO;
+import cn.github.zeroclian.blog.pojo.vo.GetBlogVO;
+import cn.github.zeroclian.blog.pojo.vo.ListBlogVO;
+import cn.github.zeroclian.jpa.CrudManager;
+import cn.github.zeroclian.pojo.ExpensesVO;
 import org.springframework.validation.annotation.Validated;
 
-import javax.validation.constraints.*;
-
-import cn.github.zeroclian.blog.pojo.entity.Blog;
-import cn.github.zeroclian.blog.pojo.dto.SaveBlogDTO;
-import cn.github.zeroclian.blog.pojo.dto.ListBlogDTO;
-import cn.github.zeroclian.blog.pojo.vo.BlogVO;
-import cn.github.zeroclian.blog.pojo.dto.UpdateBlogDTO;
-import cn.github.zeroclian.blog.pojo.vo.ListBlogVO;
-import cn.github.zeroclian.blog.pojo.vo.GetBlogVO;
-import cn.github.zeroclian.jpa.CrudManager;
-
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -61,4 +60,11 @@ public interface BlogManager extends CrudManager<Blog, Integer> {
      */
     void deleteByBlogId(@NotNull(message = "ID不能为空") Integer blogId);
 
+    /**
+     * 获取月支出
+     *
+     * @param date 日期
+     * @return
+     */
+    ExpensesVO getExpenses(LocalDate date);
 }
